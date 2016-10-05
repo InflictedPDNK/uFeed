@@ -7,10 +7,22 @@
     android:layout_height="match_parent"
     tools:context="org.pdnk.ufeed.MainActivity">
 
+    <TextView
+        android:id="@+id/lastUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:textColor="@color/colorAccent"
+        android:textSize="14sp"
+        android:visibility="gone"/>
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@id/lastUpdate">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/feedContainer"
@@ -19,6 +31,7 @@
 
 
     </android.support.v4.widget.SwipeRefreshLayout>
+
 
     <WebView
         android:id="@+id/webView"

@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.TextView;
 
 import org.pdnk.ufeed.api.ApiHelper;
 import org.pdnk.ufeed.api.BasicXmlParser;
@@ -24,6 +25,7 @@ import org.pdnk.ufeed.eSport.model.HrefDescriptor;
 import org.pdnk.ufeed.util.DialogManager;
 import org.pdnk.ufeed.util.ParametricRunnable;
 
+import java.text.DateFormat;
 import java.util.Stack;
 
 import butterknife.BindView;
@@ -40,6 +42,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     @BindView(R.id.webView)
     WebView webView;
+
+    @BindView(R.id.lastUpdate)
+    TextView lastUpdateText;
 
     private EsportsApi api;
     private DialogManager dialogManager;
@@ -87,7 +92,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         webView.getSettings().setJavaScriptEnabled(true);
-
+        webView.getSettings().setSupportZoom(true);
+        webView.getSettings().setBuiltInZoomControls(true);
 
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setDistanceToTriggerSync(500);
@@ -193,11 +199,19 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         {
             BaseFeed topFeed = modelCache.peek();
             setTitle(String.format("%s - %s", getString(R.string.app_name), topFeed.getTitle()));
-
+            if(topFeed instanceof EsportFeed)
+            {
+                lastUpdateText.setText(String.format("Updated: %s", DateFormat.getDateTimeInstance().format(((EsportFeed) topFeed).getLastUpdate())));
+                lastUpdateText.setVisibility(View.VISIBLE);
+            }else
+            {
+                lastUpdateText.setVisibility(View.GONE);
+            }
             feedAdapter.updateItems(topFeed.getEntries());
         }else
         {
             setTitle(getString(R.string.app_name));
+            lastUpdateText.setVisibility(View.GONE);
         }
     }
 
