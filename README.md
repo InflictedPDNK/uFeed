@@ -1,6 +1,6 @@
 # uFeed
 
-## Latest update:
+### Latest update:
 - Last update time for feeds
 - Zooming in WebView
 
