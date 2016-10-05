@@ -4,6 +4,6 @@
     <string name="please_connect">Please check your Internet connection and retry</string>
     <string name="cancel_button">Cancel</string>
     <string name="retry">Retry</string>
-    <string name="Ok">Ok</string>
+    <string name="Ok">OK</string>
     <string name="error_title">General Error</string>
 </resources>

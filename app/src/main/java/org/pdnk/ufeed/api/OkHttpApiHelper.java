@@ -33,6 +33,7 @@ import okhttp3.Response;
  * OkHttp provides convenient and flexible way of configuring http requests and interacting with requests/responses.
  *
  */
+@SuppressWarnings("WeakerAccess")
 public class OkHttpApiHelper implements ApiHelper
 {
     private final OkHttpClient client;
@@ -60,7 +61,7 @@ public class OkHttpApiHelper implements ApiHelper
     }
 
     /**
-     * Alternative constructor which supports custom hanlder for actions invocation.
+     * Alternative constructor which supports custom handler for actions invocation.
      * @param connectivityManager instance of the manager for network status polling
      * @param cacheDir Application's cache or files system directory to enable disk caching or null to disable
      * @param parser instance of parser for conversion between API responses and desired data model used by specific
@@ -184,7 +185,7 @@ public class OkHttpApiHelper implements ApiHelper
 
                         data.setContentType(response.header("content-type"));
 
-                        //TODO: this is not reliabel at the moment
+                        //TODO: this is not reliable at the moment
                         data.setCached(response.cacheResponse() != null);
 
                         if (onSuccessF != null)

@@ -8,6 +8,7 @@ import java.lang.reflect.Type;
  * Parser interface. Serves as a translator between API response and Application's model types. Implementations follow
  * the protocols specified by respective Data Provider APIs.
  */
+@SuppressWarnings("WeakerAccess")
 public interface ResponseParser
 {
     /**

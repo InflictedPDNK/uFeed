@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class EsportFeed extends BaseFeed<EsportFeed.Entry>
 {
-    private Date lastUpdate;
+    private final Date lastUpdate;
 
     public EsportFeed(String title, Date lastUpdate, List<Entry> entries)
     {

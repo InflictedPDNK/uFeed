@@ -1,5 +1,6 @@
 package org.pdnk.ufeed;
 
+import android.annotation.SuppressLint;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     /*
     This is a crude cache of loaded data used for navigation purposes.
      */
-    private Stack<BaseFeed> modelCache = new Stack<>();
+    private final Stack<BaseFeed> modelCache = new Stack<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -85,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     /**
      * Prepare UI related objects
      */
+    @SuppressLint("SetJavaScriptEnabled")
     private void prepareUi()
     {
         ButterKnife.bind(this);
@@ -126,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     /**
      * Load main collections feed
      */
-    void loadCollections()
+    private void loadCollections()
     {
         feedAdapter.updateItems(null);
         modelCache.clear();
@@ -147,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
      * Load feed from the selected entry
      * @param entry source entry
      */
-    void loadFeed(final BaseEntry entry)
+    private void loadFeed(final BaseEntry entry)
     {
         api.loadFeed(entry.getLink().getUrl(), new ParametricRunnable<EsportFeed>()
         {
@@ -163,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
      * Load HTML page from the selected entry
      * @param entry source entry
      */
-    void loadHtml(final BaseEntry entry)
+    private void loadHtml(final BaseEntry entry)
     {
         api.loadHtml(entry.getLink().getUrl(), new ParametricRunnable<RawResponse>()
         {
@@ -181,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
      * Handle load feed successful response
      * @param loadedFeed incoming feed data
      */
-    void handleLoadDataResponse(BaseFeed loadedFeed)
+    private void handleLoadDataResponse(BaseFeed loadedFeed)
     {
         setRefreshingState(false);
         modelCache.push(loadedFeed);
@@ -191,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     /**
      * Refresh UI presentation with the updated data
      */
-    void refreshPresentation()
+    private void refreshPresentation()
     {
         closeWebview();
 
@@ -218,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     /**
      * Close webview
      */
-    void closeWebview()
+    private void closeWebview()
     {
         webView.loadUrl("about:blank");
         webView.setVisibility(View.GONE);
@@ -238,7 +240,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     /**
      * Action handler for container item click
      */
-    private ParametricRunnable<BaseEntry> onContainerItemClick = new ParametricRunnable<BaseEntry>()
+    private final ParametricRunnable<BaseEntry> onContainerItemClick = new ParametricRunnable<BaseEntry>()
     {
         @Override
         public void run(BaseEntry param)
@@ -266,7 +268,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     /**
      * General error action handler. Supports retry
      */
-    ParametricRunnable<OkHttpApiHelper.RequestRetryHandle> standardErrorHandler = new ParametricRunnable<OkHttpApiHelper.RequestRetryHandle>()
+    private final ParametricRunnable<OkHttpApiHelper.RequestRetryHandle> standardErrorHandler = new ParametricRunnable<OkHttpApiHelper.RequestRetryHandle>()
     {
         @Override
         public void run(final OkHttpApiHelper.RequestRetryHandle param)
@@ -291,7 +293,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     /**
      * Network error action handler. Supports retry
      */
-    ParametricRunnable<OkHttpApiHelper.RequestRetryHandle> networkErrorHandler = new ParametricRunnable<OkHttpApiHelper.RequestRetryHandle>()
+    private final ParametricRunnable<OkHttpApiHelper.RequestRetryHandle> networkErrorHandler = new ParametricRunnable<OkHttpApiHelper.RequestRetryHandle>()
     {
         @Override
         public void run(final OkHttpApiHelper.RequestRetryHandle param)

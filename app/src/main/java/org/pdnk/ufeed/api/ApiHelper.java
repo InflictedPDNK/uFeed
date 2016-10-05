@@ -10,6 +10,7 @@ import java.lang.reflect.Type;
 /**
  * Helper interface to wrap Network requests for REST API calls, such as GET, POST, UPDATE, etc.
  */
+@SuppressWarnings("SameParameterValue")
 public interface ApiHelper
 {
     /**

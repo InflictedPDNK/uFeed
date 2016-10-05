@@ -17,6 +17,7 @@ import butterknife.ButterKnife;
 /**
  * Simple adapter for our recycler view
  */
+@SuppressWarnings("SameParameterValue")
 class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder>
 {
     private List<? extends BaseEntry> items;

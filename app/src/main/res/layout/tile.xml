@@ -31,7 +31,7 @@
         android:id="@+id/cachedIcon"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:src="@drawable/ic_cached"
         android:visibility="gone"/>

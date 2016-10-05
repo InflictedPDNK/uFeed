@@ -14,6 +14,7 @@ import java.util.LinkedList;
 /**
  * Parser Kernel for translating Esports XML to {@link EsportCollection} model
  */
+@SuppressWarnings("FieldCanBeLocal")
 public class EsportCollection_ParserKernel implements XmlParserKernel
 {
     private final String TAG_COLLECTION = "collection";

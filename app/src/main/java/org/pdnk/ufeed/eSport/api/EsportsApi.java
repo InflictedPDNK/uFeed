@@ -12,6 +12,7 @@ import org.pdnk.ufeed.util.ParametricRunnable;
 /**
  * Helper class encapsulating Esports REST API Data Provider negotiation.
  */
+@SuppressWarnings("SameParameterValue")
 public final class EsportsApi
 {
     /**

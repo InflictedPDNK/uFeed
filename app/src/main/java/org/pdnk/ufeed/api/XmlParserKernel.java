@@ -13,6 +13,7 @@ import java.io.IOException;
  * @see EsportCollection_ParserKernel
  * @see EsportFeed_ParserKernel
  */
+@SuppressWarnings({"EmptyMethod", "RedundantThrows", "UnusedParameters"})
 public interface XmlParserKernel
 {
     /**

@@ -13,7 +13,7 @@ public class BaseFeed<EntryType extends BaseEntry> extends BaseResponse
     private final String title;
     private final List<EntryType> entries;
 
-    public BaseFeed(String title, List<EntryType> entries)
+    BaseFeed(String title, List<EntryType> entries)
     {
         this.title = title;
         this.entries = entries;
