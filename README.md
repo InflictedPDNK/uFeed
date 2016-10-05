@@ -21,11 +21,12 @@ All objects and interfaces are documented enough to understand the idea. Nothing
 
 In terms of third-party libs, only two is used: ButterKnife and OkHTTP. ButterKnife was chosen last minute to simply save on time and keep code neat. OkHTTP is generally a standard these days, as it provides very reliable and convenient layer for networking, both for configuration and request/response handling. It is wrapped though, so can be interchanged with something else.
 
-## Considerations 
--As icons didn't work for me, I generate tile colors for entries based on hash of title.
--User-agent given in the description was causing troubles (403 errors). It is not used now (OkHTTP manages agent internally)
--Caching is achieved through OkHTTP interfaces. I enabled disk cache for it, and internally it follow conditional get requests.
--MainActivity is a straightforward implementation without any MVP or other fancy patterns. Any of those would over-engineer this simple task. Moreover, it was suggested the UI is not the focus of the challenge.
+## Considerations
+
+- As icons didn't work for me, I generate tile colors for entries based on hash of title.
+- User-agent given in the description was causing troubles (403 errors). It is not used now (OkHTTP manages agent internally)
+- Caching is achieved through OkHTTP interfaces. I enabled disk cache for it, and internally it follow conditional get requests.
+- MainActivity is a straightforward implementation without any MVP or other fancy patterns. Any of those would over-engineer this simple task. Moreover, it was suggested the UI is not the focus of the challenge.
 
 ## Things I wish I'd done
 Due to the lack of time, I didn't finish certain things I wanted originally. This is a list of them, along with those needing revisiting.
