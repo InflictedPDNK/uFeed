@@ -1,5 +1,9 @@
 # uFeed
 
+### Latest update:
+- Last update time for feeds
+- Zooming in WebView
+
 ## What's in
 This is a challenge test for UBank. The idea of the app is very simple: it's an Atom feed aggregator. As this is simplistic in nature, the implementation follows some very intuitive patterns. It relies on clasic OOP patterns to add extensibility and also breaks down coupling between API provider and the app logic.
 
