@@ -2,8 +2,8 @@ package org.pdnk.ufeed.eSport.api;
 
 
 import org.pdnk.ufeed.api.ApiHelper;
-import org.pdnk.ufeed.api.OkHttpApiHelper;
 import org.pdnk.ufeed.api.RawResponse;
+import org.pdnk.ufeed.api.RequestRetryHandle;
 import org.pdnk.ufeed.eSport.model.EsportCollection;
 import org.pdnk.ufeed.eSport.model.EsportFeed;
 import org.pdnk.ufeed.util.ParametricRunnable;
@@ -60,11 +60,11 @@ public final class EsportsApi
      * Load Esport collection. If either or both handlers are null, default action handlers will be used if they are
      * installed in the provided {@link ApiHelper}
      * @param onSuccess pass action handler accepting  {@link EsportCollection} record upon successful response or null to ignore
-     * @param onFailure pass action handler accepting {@link org.pdnk.ufeed.api.OkHttpApiHelper.RequestRetryHandle} upon failure or null to ignore
+     * @param onFailure pass action handler accepting {@link RequestRetryHandle} upon failure or null to ignore
      *                  @see ApiHelper#setGenericErrorHandler(ParametricRunnable)
      *                  @see ApiHelper#setNetworkErrorHandler(ParametricRunnable)
      */
-    public void loadCollections(ParametricRunnable<EsportCollection> onSuccess, ParametricRunnable<OkHttpApiHelper.RequestRetryHandle> onFailure)
+    public void loadCollections(ParametricRunnable<EsportCollection> onSuccess, ParametricRunnable<RequestRetryHandle> onFailure)
     {
         apiHelper.requestGET("http://feed.esportsreader.com/reader/sports?v=11", EsportCollection.class, onSuccess, onFailure);
     }
@@ -73,11 +73,11 @@ public final class EsportsApi
      * Load Esport feed. If either or both handlers are null, default action handlers will be used if they are
      * installed in the provided {@link ApiHelper}
      * @param onSuccess pass action handler accepting  {@link EsportFeed} record upon successful response or null to ignore
-     * @param onFailure pass action handler accepting {@link org.pdnk.ufeed.api.OkHttpApiHelper.RequestRetryHandle} upon failure or null to ignore
+     * @param onFailure pass action handler accepting {@link RequestRetryHandle} upon failure or null to ignore
      *                  @see ApiHelper#setGenericErrorHandler(ParametricRunnable)
      *                  @see ApiHelper#setNetworkErrorHandler(ParametricRunnable)
      */
-    public void loadFeed(String feedUrl, ParametricRunnable<EsportFeed> onSuccess, ParametricRunnable<OkHttpApiHelper.RequestRetryHandle> onFailure)
+    public void loadFeed(String feedUrl, ParametricRunnable<EsportFeed> onSuccess, ParametricRunnable<RequestRetryHandle> onFailure)
     {
         apiHelper.requestGET(String.format("%s?v=11", feedUrl), EsportFeed.class, onSuccess, onFailure);
     }
@@ -88,11 +88,11 @@ public final class EsportsApi
      * <br/>
      * Currently HTML load follows all standard GET configurations set in the provided ApiHelper (such as encoding, caching, etc.)
      * @param onSuccess pass action handler accepting RawResponse containing unmodified HTML response upon success or null to ignore
-     * @param onFailure pass action handler accepting {@link org.pdnk.ufeed.api.OkHttpApiHelper.RequestRetryHandle} upon failure or null to ignore
+     * @param onFailure pass action handler accepting {@link RequestRetryHandle} upon failure or null to ignore
      *                  @see ApiHelper#setGenericErrorHandler(ParametricRunnable)
      *                  @see ApiHelper#setNetworkErrorHandler(ParametricRunnable)
      */
-    public void loadHtml(String htmlUrl, ParametricRunnable<RawResponse> onSuccess, ParametricRunnable<OkHttpApiHelper.RequestRetryHandle> onFailure)
+    public void loadHtml(String htmlUrl, ParametricRunnable<RawResponse> onSuccess, ParametricRunnable<RequestRetryHandle> onFailure)
     {
         apiHelper.requestGET(htmlUrl, RawResponse.class, onSuccess, onFailure);
     }

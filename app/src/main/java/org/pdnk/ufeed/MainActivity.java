@@ -16,6 +16,7 @@ import org.pdnk.ufeed.api.ApiHelper;
 import org.pdnk.ufeed.api.BasicXmlParser;
 import org.pdnk.ufeed.api.OkHttpApiHelper;
 import org.pdnk.ufeed.api.RawResponse;
+import org.pdnk.ufeed.api.RequestRetryHandle;
 import org.pdnk.ufeed.eSport.api.EsportKernelFactory;
 import org.pdnk.ufeed.eSport.api.EsportsApi;
 import org.pdnk.ufeed.eSport.model.BaseEntry;
@@ -268,10 +269,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     /**
      * General error action handler. Supports retry
      */
-    private final ParametricRunnable<OkHttpApiHelper.RequestRetryHandle> standardErrorHandler = new ParametricRunnable<OkHttpApiHelper.RequestRetryHandle>()
+    private final ParametricRunnable<RequestRetryHandle> standardErrorHandler = new ParametricRunnable<RequestRetryHandle>()
     {
         @Override
-        public void run(final OkHttpApiHelper.RequestRetryHandle param)
+        public void run(final RequestRetryHandle param)
         {
             setRefreshingState(false);
 
@@ -293,10 +294,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     /**
      * Network error action handler. Supports retry
      */
-    private final ParametricRunnable<OkHttpApiHelper.RequestRetryHandle> networkErrorHandler = new ParametricRunnable<OkHttpApiHelper.RequestRetryHandle>()
+    private final ParametricRunnable<RequestRetryHandle> networkErrorHandler = new ParametricRunnable<RequestRetryHandle>()
     {
         @Override
-        public void run(final OkHttpApiHelper.RequestRetryHandle param)
+        public void run(final RequestRetryHandle param)
         {
             setRefreshingState(false);
             dialogManager.buildNoNetworkDialog(param.isRetryAvailable() ? new Runnable()

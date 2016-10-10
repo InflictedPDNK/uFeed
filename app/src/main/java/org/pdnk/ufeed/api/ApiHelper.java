@@ -24,26 +24,26 @@ public interface ApiHelper
     <T extends BaseResponse> void requestGET(@NonNull String query,
                         Type responseType,
                         ParametricRunnable<T> onSuccessF,
-                        ParametricRunnable<OkHttpApiHelper.RequestRetryHandle> onFailureF);
+                        ParametricRunnable<RequestRetryHandle> onFailureF);
 
 
     /**
      * Install general error action handler for failed requests. The action will be performed upon any failure except
      * network related. The action is executed on the UI thread.<br/>
      * {@link ParametricRunnable} param passed to the action contains response information enclosed in
-     * {@link org.pdnk.ufeed.api.OkHttpApiHelper.RequestRetryHandle}, such as last associated exception and retry action.
+     * {@link RequestRetryHandle}, such as last associated exception and retry action.
      * @param genericErrorHandler instance of action handler or null to ignore
      */
-    void setGenericErrorHandler(ParametricRunnable<OkHttpApiHelper.RequestRetryHandle> genericErrorHandler);
+    void setGenericErrorHandler(ParametricRunnable<RequestRetryHandle> genericErrorHandler);
 
     /**
      * Install network error action handler for failed requests. The action will be performed upon any network related
      * failure, such as lack of internet connection. The action is executed on the UI thread.<br/>
      * {@link ParametricRunnable} param passed to the action contains response information enclosed in
-     * {@link org.pdnk.ufeed.api.OkHttpApiHelper.RequestRetryHandle}, such as last associated exception and retry action.
+     * {@link RequestRetryHandle}, such as last associated exception and retry action.
      * @param networkErrorHandler instance of action handler or null to ignore
      */
-    void setNetworkErrorHandler(ParametricRunnable<OkHttpApiHelper.RequestRetryHandle> networkErrorHandler);
+    void setNetworkErrorHandler(ParametricRunnable<RequestRetryHandle> networkErrorHandler);
 
     /**
      * Cancel all active requests. Cancelled requests will not execute any associated actions, such as onSuccess or onFailure.
